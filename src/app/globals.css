@@ -257,6 +257,48 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  /* Magazine Editorial Utilities */
+  .text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .grid-magazine {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .strikethrough-reveal {
+    position: relative;
+    display: inline-block;
+  }
+
+  .strikethrough-reveal::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--uisum-orange);
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .strikethrough-reveal:hover::after {
+    width: 100%;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════

@@ -43,14 +43,10 @@ interface ParallaxContainerProps {
 }
 
 export function ParallaxContainer({ children, className }: ParallaxContainerProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"],
-    });
+    const { scrollYProgress } = useScroll();
 
     return (
-        <div ref={containerRef} className={cn("relative overflow-hidden", className)}>
+        <div className={cn("relative overflow-hidden", className)}>
             {children}
         </div>
     );
@@ -98,11 +94,7 @@ interface HeroParallaxLayersProps {
 }
 
 export function HeroParallaxLayers({ className }: HeroParallaxLayersProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"],
-    });
+    const { scrollYProgress } = useScroll();
 
     // Different parallax speeds for each layer
     const layer1Y = useTransform(scrollYProgress, [0, 1], [0, 150]);
@@ -115,7 +107,7 @@ export function HeroParallaxLayers({ className }: HeroParallaxLayersProps) {
     const layer4Opacity = useTransform(scrollYProgress, [0, 0.3], [0.6, 0]);
 
     return (
-        <div ref={containerRef} className={cn("absolute inset-0", className)}>
+        <div className={cn("absolute inset-0", className)}>
             {/* Layer 1: Blurred background energy */}
             <motion.div
                 className="absolute inset-0 pointer-events-none"

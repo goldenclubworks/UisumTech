@@ -1,96 +1,141 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedText, RevealText } from "@/components/AnimatedText";
 import { HeroParallaxLayers } from "@/components/ParallaxContainer";
+import { GlassCard } from "@/components/ui/glass-card";
 
 export function HeroSection() {
+    const { scrollY } = useScroll();
+    const yOffset = useTransform(scrollY, [0, 500], [0, 200]);
+
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Parallax Background Layers */}
+        <section className="relative min-h-[110vh] flex items-center overflow-hidden pt-20">
+            {/* Background Parallax */}
             <HeroParallaxLayers />
 
-            {/* Content */}
-            <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
-                {/* Label */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mb-8"
-                >
-                    <span className="label text-uisum-orange">
-                        Digital Creation Studio
-                    </span>
-                </motion.div>
+            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 grid grid-cols-12 gap-6 items-start">
 
-                {/* Main Headline */}
-                <h1 className="heading-1 mb-6">
-                    <AnimatedText
-                        text="Digital Presence."
-                        type="chars"
-                        delay={0.4}
-                        staggerChildren={0.02}
-                        className="block"
-                    />
-                    <AnimatedText
-                        text="Engineered."
-                        type="chars"
-                        delay={0.8}
-                        staggerChildren={0.02}
-                        className="block text-uisum-orange text-glow-orange"
-                    />
-                </h1>
-
-                {/* Subheadline */}
-                <RevealText delay={1.2} className="mb-12">
-                    <p className="body-large max-w-xl mx-auto">
-                        AI-native creative studio. We build what others template.
-                    </p>
-                </RevealText>
-
-                {/* CTAs */}
-                <motion.div
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.5 }}
-                >
-                    <motion.a
-                        href="#contact"
-                        className="btn-primary"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        Start Project
-                    </motion.a>
-
-                    <motion.a
-                        href="#work"
-                        className="btn-secondary"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        See Work
-                    </motion.a>
-                </motion.div>
-
-                {/* Scroll Indicator */}
-                <motion.div
-                    className="absolute bottom-12 left-1/2 -translate-x-1/2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2, duration: 0.8 }}
-                >
+                {/* Left: Vertical Label */}
+                <div className="hidden lg:block col-span-1 border-l border-white/10 pt-4 h-full">
                     <motion.div
-                        className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-2"
-                        animate={{ y: [0, 8, 0] }}
-                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                        className="text-vertical label text-white/20 whitespace-nowrap"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, delay: 0.5 }}
                     >
-                        <div className="w-1 h-2 rounded-full bg-uisum-orange" />
+                        ESTABLISHED MMXXIV — AI NATIVE STUDIO
                     </motion.div>
+                </div>
+
+                {/* Center: Massive Editorial Headline */}
+                <div className="col-span-12 lg:col-span-7 pt-12">
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-4"
+                    >
+                        <span className="label text-uisum-orange tracking-[0.5em]">
+                            Digital Creation Studio
+                        </span>
+                    </motion.div>
+
+                    <h1 className="text-7xl md:text-8xl lg:text-[10vw] font-bold tracking-tighter leading-[0.85] mb-12">
+                        <AnimatedText
+                            text="DIGITAL"
+                            type="chars"
+                            delay={0.2}
+                            className="block"
+                        />
+                        <motion.span
+                            className="block italic font-light text-white/40"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4, duration: 0.8 }}
+                        >
+                            PRESENCE.
+                        </motion.span>
+                        <AnimatedText
+                            text="ENGINEERED."
+                            type="chars"
+                            delay={0.6}
+                            className="block text-uisum-orange text-glow-orange strikethrough-reveal"
+                        />
+                    </h1>
+
+                    <div className="max-w-md">
+                        <RevealText delay={1} className="mb-12">
+                            <p className="body-large text-white/60 lowercase tracking-tight leading-none text-2xl">
+                                We design and build premium digital experiences for brands who demand perfection.
+                            </p>
+                        </RevealText>
+
+                        <motion.div
+                            className="flex items-center gap-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 1.2 }}
+                        >
+                            <motion.a
+                                href="#contact"
+                                className="btn-primary"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                Start Project
+                            </motion.a>
+                            <motion.a
+                                href="#work"
+                                className="group flex items-center gap-2 text-sm font-medium hover:text-uisum-orange transition-colors"
+                                whileHover={{ x: 5 }}
+                            >
+                                View Works
+                                <span className="w-8 h-px bg-white/20 group-hover:bg-uisum-orange transition-colors" />
+                            </motion.a>
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Right: Asymmetrical Bento Elements */}
+                <motion.div
+                    className="hidden lg:block col-span-4 self-end pt-24"
+                    style={{ y: yOffset }}
+                >
+                    <div className="relative space-y-6">
+                        <GlassCard className="translate-x-12rotate-2" delay={0.8}>
+                            <div className="h-40 w-full rounded-lg bg-gradient-to-br from-uisum-blue/20 to-transparent flex items-center justify-center">
+                                <span className="text-4xl">📐</span>
+                            </div>
+                            <div className="mt-4">
+                                <div className="label text-[10px] mb-1">Precision</div>
+                                <div className="text-sm font-medium">Bento Architecture</div>
+                            </div>
+                        </GlassCard>
+
+                        <GlassCard className="-translate-x-6 -rotate-3 border-uisum-orange/20" delay={1}>
+                            <div className="flex items-start justify-between">
+                                <div>
+                                    <div className="text-3xl font-bold text-uisum-orange leading-none mb-2">99.9%</div>
+                                    <div className="text-xs text-white/40">Visual Satisfaction</div>
+                                </div>
+                                <div className="w-12 h-12 rounded-full border border-white/10 animate-pulse-glow" />
+                            </div>
+                        </GlassCard>
+
+                        <div className="absolute -right-20 top-0 text-[12vw] font-bold text-white/[0.02] -z-10 pointer-events-none select-none">
+                            UISUM
+                        </div>
+                    </div>
                 </motion.div>
+
             </div>
+
+            {/* Aesthetic Micro-details */}
+            <div className="absolute top-1/4 right-[10%] w-[1px] h-64 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+            <div className="absolute bottom-1/4 left-[5%] text-[10px] leading-none text-white/10 rotate-90 origin-left uppercase tracking-widest">
+                Liquid Glass UI Framework v4.0.1
+            </div>
+
         </section>
     );
 }

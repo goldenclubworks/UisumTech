@@ -1,165 +1,121 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { RevealText } from "@/components/AnimatedText";
-import { useState } from "react";
+import { useRef } from "react";
 
 const projects = [
     {
         id: 1,
-        title: "Zenith Finance",
-        category: "Web + Brand",
-        description: "Complete digital presence for next-gen fintech platform.",
-        gradient: "from-orange-600/20 to-blue-900/20",
+        title: "ZENITH FINANCE",
+        category: "WEB SYSTEM / BRANDING",
+        description: "ENGINEERING DIGITAL LIQUIDITY FOR THE NEXT GENERATION.",
+        year: "2024",
+        image: "/hero-main.png", // Reusing hero visual for demo consistency
     },
     {
         id: 2,
-        title: "Pulse Media",
-        category: "Social + Video",
-        description: "Content system driving 10x engagement growth.",
-        gradient: "from-purple-600/20 to-pink-900/20",
+        title: "PULSE MEDIA",
+        category: "SOCIAL ENGINE / VIDEO",
+        description: "REDEFINING THE CONTENT PARADIGM THROUGH DATA.",
+        year: "2024",
+        image: "/parallax-layer1.png",
     },
     {
         id: 3,
-        title: "Aether Labs",
-        category: "Full Stack",
-        description: "Web, brand, and content unification for AI startup.",
-        gradient: "from-cyan-600/20 to-emerald-900/20",
+        title: "AETHER LABS",
+        category: "AI PRODUCT / INTERFACE",
+        description: "HUMAN-CENTRIC INTERFACES FOR INTELLIGENT AGENTS.",
+        year: "2023",
+        image: "/hero-main.png",
     },
 ];
 
 export function WorkSection() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section id="work" className="relative py-32 overflow-hidden">
-            {/* Background */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    background: "linear-gradient(to bottom, transparent, oklch(0.06 0 0) 50%, transparent)"
-                }}
-            />
-
-            <div className="relative max-w-7xl mx-auto px-6">
-                {/* Section Header */}
-                <div className="text-center mb-16">
-                    <motion.span
-                        className="label text-uisum-orange block mb-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        Selected Work
-                    </motion.span>
-
-                    <RevealText delay={0.1}>
-                        <h2 className="heading-2">
-                            Proof, Not<br />
-                            <span className="text-gradient">Promises.</span>
-                        </h2>
-                    </RevealText>
-                </div>
-
-                {/* Project Cards */}
-                <div className="grid lg:grid-cols-3 gap-6">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            className="group relative aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer"
-                            initial={{ opacity: 0, y: 40 }}
+        <section id="work" className="relative py-64 bg-black overflow-hidden">
+            <div className="max-w-[1400px] mx-auto px-6 mb-24">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                    <div className="max-w-2xl">
+                        <motion.span
+                            className="label text-uisum-orange block mb-6 tracking-[0.5em]"
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.15, duration: 0.6 }}
-                            whileHover={{ scale: 1.02 }}
-                            onHoverStart={() => setActiveIndex(index)}
                         >
-                            {/* Gradient Background */}
-                            <div
-                                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} transition-opacity duration-500`}
-                            />
+                            SELECTED ARTIFACTS
+                        </motion.span>
 
-                            {/* Glass overlay */}
-                            <div className="absolute inset-0 glass opacity-60" />
+                        <RevealText delay={0.1}>
+                            <h2 className="text-7xl md:text-9xl font-bold tracking-tighter leading-[0.85] text-white">
+                                PROOF,<br />
+                                <span className="text-white/20">NOT PROMISES.</span>
+                            </h2>
+                        </RevealText>
+                    </div>
 
-                            {/* Grid pattern */}
-                            <div
-                                className="absolute inset-0 opacity-10"
-                                style={{
-                                    backgroundImage: `linear-gradient(oklch(1 0 0 / 10%) 1px, transparent 1px),
-                                    linear-gradient(90deg, oklch(1 0 0 / 10%) 1px, transparent 1px)`,
-                                    backgroundSize: '40px 40px'
-                                }}
-                            />
-
-                            {/* Content */}
-                            <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                                <motion.span
-                                    className="label text-uisum-orange mb-2"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.15 + 0.2 }}
-                                >
-                                    {project.category}
-                                </motion.span>
-
-                                <motion.h3
-                                    className="text-2xl font-semibold mb-3 text-foreground"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.15 + 0.3 }}
-                                >
-                                    {project.title}
-                                </motion.h3>
-
-                                <motion.p
-                                    className="text-sm text-muted-foreground"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.15 + 0.4 }}
-                                >
-                                    {project.description}
-                                </motion.p>
-
-                                {/* Hover arrow */}
-                                <motion.div
-                                    className="absolute top-8 right-8 w-10 h-10 rounded-full glass flex items-center justify-center"
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileHover={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
-                                    </svg>
-                                </motion.div>
-                            </div>
-                        </motion.div>
-                    ))}
+                    <div className="text-right hidden md:block">
+                        <div className="text-7xl font-light text-white/5 leading-none">WORKS</div>
+                        <div className="text-xs font-mono text-white/20 tracking-widest mt-2 uppercase">scrolldir:horizontal. spread</div>
+                    </div>
                 </div>
-
-                {/* View All Link */}
-                <motion.div
-                    className="text-center mt-12"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                >
-                    <motion.a
-                        href="#"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                        whileHover={{ x: 4 }}
-                    >
-                        View all projects
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </motion.a>
-                </motion.div>
             </div>
+
+            {/* Horizontal Spread Scroll */}
+            <div className="flex gap-0 overflow-x-auto no-scrollbar snap-x snap-mandatory px-[20vw]">
+                {projects.map((project, index) => (
+                    <motion.div
+                        key={project.id}
+                        className="flex-shrink-0 w-[60vw] md:w-[40vw] mr-12 snap-center group"
+                        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.8, delay: index * 0.1 }}
+                    >
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-8 bg-white/5">
+                            <motion.div
+                                className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100"
+                                />
+                            </motion.div>
+
+                            {/* Overlay details */}
+                            <div className="absolute top-6 left-6 text-xs font-mono text-white/40 tracking-[0.2em]">
+                                {project.year} // ART-00{project.id}
+                            </div>
+
+                            <div className="absolute inset-x-0 bottom-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black to-transparent">
+                                <p className="text-xs text-uisum-orange mb-2 font-medium tracking-widest">VIEW CASE STUDY</p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <h3 className="text-3xl font-bold tracking-tighter italic group-hover:text-uisum-orange transition-colors">
+                                {project.title}
+                            </h3>
+                            <div className="flex items-center gap-4 text-[10px] label tracking-[0.3em]">
+                                {project.category}
+                            </div>
+                            <p className="text-sm text-white/40 font-light max-w-xs lowercase">
+                                {project.description}
+                            </p>
+                        </div>
+                    </motion.div>
+                ))}
+
+                {/* End Spacer */}
+                <div className="flex-shrink-0 w-[20vw]" />
+            </div>
+
+            {/* Background aesthetic line */}
+            <div className="absolute left-0 right-0 top-1/2 h-px bg-white/5 -z-10" />
         </section>
     );
 }
