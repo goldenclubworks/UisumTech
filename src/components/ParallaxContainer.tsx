@@ -43,8 +43,6 @@ interface ParallaxContainerProps {
 }
 
 export function ParallaxContainer({ children, className }: ParallaxContainerProps) {
-    const { scrollYProgress } = useScroll();
-
     return (
         <div className={cn("relative overflow-hidden", className)}>
             {children}

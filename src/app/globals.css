@@ -191,7 +191,9 @@
     background: var(--glass);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--glass-border);
+    border: 1px solid oklch(1 0 0 / 6%);
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .glass-strong {
@@ -273,7 +275,7 @@
   .noise-overlay {
     position: fixed;
     inset: 0;
-    z-index: 100;
+    z-index: 50;
     pointer-events: none;
     opacity: 0.05;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -432,5 +434,20 @@
     background: oklch(1 0 0 / 10%);
     border-color: oklch(1 0 0 / 20%);
     transform: scale(1.02);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Accessibility — Reduced Motion Support
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
