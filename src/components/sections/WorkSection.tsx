@@ -1,32 +1,32 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { RevealText } from "@/components/AnimatedText";
 import { useRef } from "react";
 
 const projects = [
     {
         id: 1,
-        title: "ZENITH FINANCE",
-        category: "WEB SYSTEM / BRANDING",
-        description: "ENGINEERING DIGITAL LIQUIDITY FOR THE NEXT GENERATION.",
+        title: "WEBDESIGN",
+        category: "ONE-PAGER / WEBSITE",
+        description: "Egal ob One-Pager für Privatpersonen oder größere Websites für klein & mittelständige Unternehmen.",
         year: "2024",
-        image: "/hero-main.png", // Reusing hero visual for demo consistency
+        image: "/hero-main.png",
     },
     {
         id: 2,
-        title: "PULSE MEDIA",
-        category: "SOCIAL ENGINE / VIDEO",
-        description: "REDEFINING THE CONTENT PARADIGM THROUGH DATA.",
+        title: "SOCIAL MEDIA",
+        category: "INSTAGRAM / TIKTOK / CONTENT",
+        description: "Wir bringen Dein Social Media auf ein neues Level mit strategischem Content und Account-Management.",
         year: "2024",
         image: "/parallax-layer1.png",
     },
     {
         id: 3,
-        title: "AETHER LABS",
-        category: "AI PRODUCT / INTERFACE",
-        description: "HUMAN-CENTRIC INTERFACES FOR INTELLIGENT AGENTS.",
-        year: "2023",
+        title: "BRANDING",
+        category: "LOGO / FLYER / MERCHANDISE",
+        description: "Von Logo-Design über Visitenkarten bis hin zu Merchandise Artikeln sind wir dein Ansprechpartner.",
+        year: "2024",
         image: "/hero-main.png",
     },
 ];
@@ -45,13 +45,13 @@ export function WorkSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            SELECTED ARTIFACTS
+                            PROJEKTE
                         </motion.span>
 
                         <RevealText delay={0.1}>
                             <h2 className="text-7xl md:text-9xl font-bold tracking-tighter leading-[0.85] text-white">
-                                PROOF,<br />
-                                <span className="text-white/20">NOT PROMISES.</span>
+                                BEWEISE,<br />
+                                <span className="text-white/20">KEINE VERSPRECHEN.</span>
                             </h2>
                         </RevealText>
                     </div>
@@ -88,11 +88,11 @@ export function WorkSection() {
 
                             {/* Overlay details */}
                             <div className="absolute top-6 left-6 text-xs font-mono text-white/40 tracking-[0.2em]">
-                                {project.year} // ART-00{project.id}
+                                {project.year} // PRJ-00{project.id}
                             </div>
 
                             <div className="absolute inset-x-0 bottom-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black to-transparent">
-                                <p className="text-xs text-uisum-orange mb-2 font-medium tracking-widest">VIEW CASE STUDY</p>
+                                <p className="text-xs text-uisum-orange mb-2 font-medium tracking-widest">MEHR ERFAHREN</p>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@ export function WorkSection() {
                             <div className="flex items-center gap-4 text-[10px] label tracking-[0.3em]">
                                 {project.category}
                             </div>
-                            <p className="text-sm text-white/40 font-light max-w-xs lowercase">
+                            <p className="text-sm text-white/40 font-light max-w-xs">
                                 {project.description}
                             </p>
                         </div>

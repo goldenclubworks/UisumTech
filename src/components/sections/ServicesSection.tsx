@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { RevealText } from "@/components/AnimatedText";
 import { Globe, Share2, Palette, Camera } from "lucide-react";
@@ -9,29 +9,37 @@ import { useRef } from "react";
 const services = [
     {
         icon: <Globe className="w-12 h-12" />,
-        title: "WEB SYSTEM",
-        description: "Architecting high-performance digital ecosystems. Not just websites, but scalable software products designed for the future.",
+        title: "WEBSITES",
+        subtitle: "One-Pager & Webdesign",
+        description: "Egal ob kleiner One-Pager für Privatpersonen oder größere Websites für klein & mittelständige Unternehmen.",
+        price: "ab 150€",
         offset: "0%",
         color: "uisum-orange"
     },
     {
         icon: <Share2 className="w-12 h-12" />,
-        title: "SOCIAL DYNAMICS",
-        description: "Strategic content engine that builds authority. We engineer virality through data-driven visual storytelling.",
+        title: "SOCIAL MEDIA",
+        subtitle: "Management & Strategie",
+        description: "Wir bringen Dein Social Media auf ein neues Level um Platz für Sichtbarkeit und Verbindung zu schaffen.",
+        price: "ab 200€",
         offset: "15%",
         color: "uisum-blue"
     },
     {
         icon: <Palette className="w-12 h-12" />,
-        title: "BRAND IDENTITY",
-        description: "Visual languages that command respect. We create identity systems that work seamlessly across code and physical space.",
+        title: "BRANDING",
+        subtitle: "Visual Identity",
+        description: "Von Logo/Moodboard-Design über Flyer, Visitenkarten bis hin zu Merchandise Artikeln sind wir dein Ansprechpartner.",
+        price: "ab 20€",
         offset: "-5%",
         color: "white"
     },
     {
         icon: <Camera className="w-12 h-12" />,
-        title: "CINEMATIC VISUALS",
-        description: "High-end photography and motion production. We capture the essence of your product with clinical precision.",
+        title: "FOTO/VIDEO",
+        subtitle: "Content Production",
+        description: "Deine Vorstellung perfekt eingefangen, ob mit Drohne, Kamera oder Content Shoots.",
+        price: "ab 80€",
         offset: "10%",
         color: "uisum-orange"
     },
@@ -57,26 +65,26 @@ export function ServicesSection() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            CORE CAPABILITIES
+                            LEISTUNGEN BY UISUM
                         </motion.span>
 
                         <RevealText delay={0.1}>
                             <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white">
-                                THE<br />
-                                <span className="text-white/20">FOUR</span><br />
-                                <span className="italic text-uisum-orange">PILLARS.</span>
+                                RUNDUM<br />
+                                <span className="text-white/20">LÖSUNG</span><br />
+                                <span className="italic text-uisum-orange">FÜR DICH.</span>
                             </h2>
                         </RevealText>
 
                         <motion.p
-                            className="mt-12 body-large text-white/40 max-w-sm lowercase leading-tight"
+                            className="mt-12 body-large text-white/40 max-w-sm leading-tight"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
                         >
-                            uisum represents the intersection of logic and aesthetic.
-                            our services are unified, not siloed.
+                            Technik muss sich nicht wie eine Fremdsprache anfühlen.
+                            Wir kümmern uns um Digitalisierung, egal ob Social Media, Websites oder Branding.
                         </motion.p>
                     </div>
 
@@ -97,9 +105,14 @@ export function ServicesSection() {
                                         <div className={`text-${service.color} opacity-40 group-hover:opacity-100 transition-opacity`}>
                                             {service.icon}
                                         </div>
-                                        <div>
-                                            <div className="text-xs font-mono text-white/20 mb-4 tracking-widest">
-                                                SERVICE_MODULE // 0{index + 1}
+                                        <div className="flex-1">
+                                            <div className="flex items-center justify-between mb-4">
+                                                <div className="text-xs font-mono text-white/20 tracking-widest">
+                                                    {service.subtitle}
+                                                </div>
+                                                <div className="text-uisum-orange font-bold text-lg">
+                                                    {service.price}
+                                                </div>
                                             </div>
                                             <h3 className="text-4xl font-bold mb-6 tracking-tighter italic">
                                                 {service.title}
@@ -112,7 +125,7 @@ export function ServicesSection() {
 
                                     {/* Decorative corner */}
                                     <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/5 uppercase">
-                                        uis/lib-cap-0{index + 1}
+                                        uis/srv-0{index + 1}
                                     </div>
                                 </GlassCard>
                             </motion.div>
